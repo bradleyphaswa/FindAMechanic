@@ -1,0 +1,30 @@
+<resources>
+    <string name="app_name">Find A Mechanic</string>
+
+    <array name="Province">
+        <item>Eastern Cape</item>
+        <item>Free State</item>
+        <item>Gauteng</item>
+        <item>KwaZulu-Natal</item>
+        <item>Limpopo</item>
+        <item>Mpumalanga</item>
+        <item>North West</item>
+        <item>Northern Cape</item>
+        <item>Western Cape</item>
+    </array>
+
+    <array name="Services">
+        <item>Mechanical Repairs</item>
+        <item>Auto Electrician</item>
+        <item>Panel Beater</item>
+        <item>Motor Spare</item>
+        <item>Engine Parts</item>
+        <item>Car sales</item>
+        <item>Scrapyards</item>
+        <item>Tire Services</item>
+        <item>Computer Box Repairs</item>
+        <item>Specialist</item>
+        <item>Batteries</item>
+    </array>
+
+</resources>

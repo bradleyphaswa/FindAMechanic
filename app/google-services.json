@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "455920918676",
+    "project_id": "find-a-mechanic-e58d5",
+    "storage_bucket": "find-a-mechanic-e58d5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:455920918676:android:643efd35cb407847325481",
+        "android_client_info": {
+          "package_name": "com.android.findamechanic"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "455920918676-430csf0f78voff4a4hlrjhjld0pkdjtl.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.android.findamechanic",
+            "certificate_hash": "a0246080b10398d10cb5e15b96fc06ff52e3e6b2"
+          }
+        },
+        {
+          "client_id": "455920918676-l8615jt6le1bvg5iu7gjvdhhmrvhdju2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAnxW0Ro5-Xeq3goq67yg--DK_x-kh69hw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "455920918676-l8615jt6le1bvg5iu7gjvdhhmrvhdju2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
