@@ -22,7 +22,7 @@ import com.google.firebase.auth.PhoneAuthProvider;
 
 import java.util.concurrent.TimeUnit;
 
-public class ServiceVerifyPhone extends AppCompatActivity {
+public class ServiceSendOtp extends AppCompatActivity {
 
     String verificationCode, phoneNumber;
 
@@ -37,9 +37,9 @@ public class ServiceVerifyPhone extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_service_verify_phone);
+        setContentView(R.layout.activity_service_send_otp);
 
-        phoneNumber = getIntent().getStringExtra(ServiceRegister.SERVICE_REGISTER_PHONE_NUMBER).trim();
+        phoneNumber = getIntent().getStringExtra(ServicePhoneLogin.SERVICE_PHONE_LOGIN_NUMBER).trim();
 
         otp = findViewById(R.id.sOtp);
         text = findViewById(R.id.s_text);
@@ -81,32 +81,6 @@ public class ServiceVerifyPhone extends AppCompatActivity {
                 text.setVisibility(View.INVISIBLE);
             }
         }.start();
-
-        resend.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                resend.setVisibility(View.INVISIBLE);
-                resendOtp(phoneNumber);
-
-                new CountDownTimer(60000, 1000) {
-                    @Override
-                    public void onTick(long millisUntilFinished) {
-                        text.setVisibility(View.VISIBLE);
-                        text.setText("Resend Code within " + millisUntilFinished/1000+" Seconds");
-                    }
-
-                    @Override
-                    public void onFinish() {
-                        resend.setVisibility(View.VISIBLE);
-                        text.setVisibility(View.INVISIBLE);
-                    }
-                }.start();
-            }
-        });
-    }
-
-    private void resendOtp(String phone) {
-        sendVerificationCode(phone);
     }
 
     private void sendVerificationCode(String phoneNumber) {
@@ -131,7 +105,7 @@ public class ServiceVerifyPhone extends AppCompatActivity {
 
         @Override
         public void onVerificationFailed(@NonNull FirebaseException e) {
-            Toast.makeText(ServiceVerifyPhone.this, e.getMessage(),
+            Toast.makeText(ServiceSendOtp.this, e.getMessage(),
                     Toast.LENGTH_SHORT).show();
         }
 
@@ -145,23 +119,26 @@ public class ServiceVerifyPhone extends AppCompatActivity {
 
     private void verifyCode(String code) {
         PhoneAuthCredential credential = PhoneAuthProvider.getCredential(verificationCode, code);
-        linkCredential(credential);
+        signInWithPhone(credential);
     }
 
-    private void linkCredential(PhoneAuthCredential credential) {
-        mFirebaseAuth.getCurrentUser().linkWithCredential(credential)
-                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+    private void signInWithPhone(PhoneAuthCredential credential) {
+
+        mFirebaseAuth.signInWithCredential(credential).addOnCompleteListener(
+                new OnCompleteListener<AuthResult>() {
                     @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
+                    public void onComplete(@androidx.annotation.NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()) {
-                            startActivity(new Intent(ServiceVerifyPhone.this, MainMenu.class));
+                            startActivity(new Intent(ServiceSendOtp.this, ServicePanel_BottomNavigation.class));
                             finish();
-                        } else {
-                            Toast.makeText(ServiceVerifyPhone.this, task.getException().getMessage(),
-                                    Toast.LENGTH_SHORT).show();
+                        }
+
+                        else {
+                            ReusableCodeForAll.ShowAlert(ServiceSendOtp.this, "Error", task.getException().getMessage());
                         }
                     }
                 });
+
     }
 
 }

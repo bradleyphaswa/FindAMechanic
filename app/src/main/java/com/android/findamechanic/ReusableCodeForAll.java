@@ -5,7 +5,13 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class ReusableCodeForAll {
+
+    public static final Pattern VALID_EMAIL_ADDRESS_REGEX =
+            Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
     public static void ShowAlert(Context context, String title, String message)
     {
         AlertDialog.Builder builder=new AlertDialog.Builder(context);
@@ -19,7 +25,8 @@ public class ReusableCodeForAll {
         }).setTitle(title).setMessage(message).show();
     }
 
-    public static boolean matches( String regex) {
-        throw new RuntimeException("Stub!");
+    public static boolean validate(String emailStr) {
+        Matcher matcher = VALID_EMAIL_ADDRESS_REGEX.matcher(emailStr);
+        return matcher.find();
     }
 }

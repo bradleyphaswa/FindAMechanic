@@ -1,6 +1,6 @@
 package com.android.findamechanic;
 
-import static android.text.TextUtils.isEmpty;
+import static com.android.findamechanic.ReusableCodeForAll.validate;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,7 +10,6 @@ import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -27,9 +26,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.HashMap;
-import java.util.Locale;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class ServiceRegister extends AppCompatActivity {
 
@@ -41,13 +37,12 @@ public class ServiceRegister extends AppCompatActivity {
     FirebaseAuth FAuth;
     DatabaseReference databaseReference;
     FirebaseDatabase firebaseDatabase;
-    String role, name, emailId, password,confPassword, mobile, street, suburb, service, province;
+    String name, emailId, password,confPassword, mobile, street, suburb, service, province;
     String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
 
-    public static final Pattern VALID_EMAIL_ADDRESS_REGEX =
-            Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
+    String role = "Service";
 
-    public final static String SERVICE_PHONE_NUMBER =  "mobile";
+    public final static String SERVICE_REGISTER_PHONE_NUMBER =  "mobile";
 
 
 
@@ -211,7 +206,7 @@ public class ServiceRegister extends AppCompatActivity {
                                                                 dialogInterface.dismiss();
 
                                                                 Intent intent = new Intent(ServiceRegister.this, ServiceVerifyPhone.class);
-                                                                intent.putExtra(SERVICE_PHONE_NUMBER, "+27"+mobile);
+                                                                intent.putExtra(SERVICE_REGISTER_PHONE_NUMBER, "+27"+mobile);
                                                                 startActivity(intent);
                                                             }
                                                         });
@@ -233,10 +228,7 @@ public class ServiceRegister extends AppCompatActivity {
         });
     }
 
-    public static boolean validate(String emailStr) {
-        Matcher matcher = VALID_EMAIL_ADDRESS_REGEX.matcher(emailStr);
-        return matcher.find();
-    }
+
 
     private boolean isEmpty(String string){
         return string.equals("");

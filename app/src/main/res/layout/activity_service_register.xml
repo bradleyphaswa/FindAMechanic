@@ -22,11 +22,22 @@
             android:padding="8dp"
             android:orientation="vertical" >
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:text="Service Provider registration"/>
+
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/businessName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp">
+
+
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"

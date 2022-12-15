@@ -59,7 +59,7 @@
             android:text="Forgot Password?"
             android:gravity="end"
             android:textSize="16sp"
-            android:textColor="#090909"/>
+            android:textColor="@color/blue"/>
 
         <Button
             android:id="@+id/btnServiceLogin"
@@ -73,15 +73,30 @@
             android:textSize="18sp"
             />
 
-        <TextView
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/sRegistrationLink"
-            android:layout_gravity="center"
-            android:text="Don't Have An Account? Create"
             android:layout_marginTop="10dp"
-            android:textColor="#090909"
-            android:textSize="16sp"/>
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Don't Have An Account?"
+                android:textColor="#090909"
+                android:textSize="16sp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:id="@+id/sRegisterTextLink"
+                android:layout_marginLeft="6dp"
+                android:text="Create"
+                android:textColor="@color/blue"
+                android:textSize="16sp"/>
+
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
