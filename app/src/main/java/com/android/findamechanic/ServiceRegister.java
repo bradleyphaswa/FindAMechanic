@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.app.Service;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -95,7 +96,7 @@ public class ServiceRegister extends AppCompatActivity {
             }
         });
 
-        databaseReference = firebaseDatabase.getInstance().getReference("Service");
+        databaseReference = firebaseDatabase.getInstance().getReference("Service Providers");
         FAuth = FirebaseAuth.getInstance();
 
 
@@ -149,6 +150,22 @@ public class ServiceRegister extends AppCompatActivity {
             }
         });
 
+        email.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(ServiceRegister.this, ServiceEmailLogin.class));
+                finish();
+            }
+        });
+
+        phone.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(ServiceRegister.this, ServicePhoneLogin.class));
+                finish();
+            }
+        });
+
         }
 
     /**
@@ -178,14 +195,12 @@ public class ServiceRegister extends AppCompatActivity {
                             hashMap1.put("Business name", name);
                             hashMap1.put("Service", service);
                             hashMap1.put("Email", emailId);
-                            hashMap1.put("Password", password);
-                            hashMap1.put("Confirm password", confPassword);
                             hashMap1.put("Phone number", "27"+mobile);
                             hashMap1.put("Street name", street);
                             hashMap1.put("Suburb", suburb);
                             hashMap1.put("Province", province);
 
-                            firebaseDatabase.getInstance().getReference("Service")
+                            firebaseDatabase.getInstance().getReference("Service Providers")
                                     .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                                     .setValue(hashMap1).addOnCompleteListener(new OnCompleteListener<Void>() {
                                         @Override

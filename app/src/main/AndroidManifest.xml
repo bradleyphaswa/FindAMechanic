@@ -17,6 +17,13 @@
         android:theme="@style/Theme.FindAMechanic"
         tools:targetApi="31">
         <activity
+            android:name=".CustomerVerifyPhone"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".ServiceSendOtp"
             android:exported="false">
             <meta-data
