@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/serviceHome"
+        android:icon="@drawable/ic_baseline_home_24"
+        android:title="Home"/>
+
+    <item
+        android:id="@+id/serviceInbox"
+        android:icon="@drawable/ic_baseline_message_24"
+        android:title="Inbox"/>
+
+    <item
+        android:id="@+id/serviceProfile"
+        android:icon="@drawable/ic_baseline_post_add_24"
+        android:title="Profile"/>
+
+</menu>
