@@ -136,7 +136,7 @@ public class ServiceEmailLogin extends AppCompatActivity {
                 }
             });
         } catch (Exception e) {
-            Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
+            Toast.makeText(ServiceEmailLogin.this, e.getMessage(), Toast.LENGTH_LONG).show();
         }
 
 

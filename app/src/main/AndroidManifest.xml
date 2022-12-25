@@ -17,6 +17,27 @@
         android:theme="@style/Theme.FindAMechanic"
         tools:targetApi="31">
         <activity
+            android:name=".CustomerSendOtp"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".CustomerForgotPassword"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".CustomerPanel_BottomNavigation"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".CustomerVerifyPhone"
             android:exported="false">
             <meta-data

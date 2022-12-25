@@ -38,13 +38,18 @@ public class MainActivity extends AppCompatActivity {
                     if(Fauth.getCurrentUser().isEmailVerified()) {
                         Fauth = FirebaseAuth.getInstance();
 
-                        databaseReference = FirebaseDatabase.getInstance().getReference("User").child(FirebaseAuth.getInstance().getUid()+ "/Role");
+                        databaseReference = FirebaseDatabase.getInstance().getReference("User").child(FirebaseAuth.getInstance().getUid()+"/Role");
                         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot snapshot) {
                                 String role = snapshot.getValue(String.class);
                                 if(role.equals("Service")) {
                                     startActivity(new Intent(MainActivity.this, ServicePanel_BottomNavigation.class));
+                                    finish();
+                                }
+
+                                if(role.equals("Customer")) {
+                                    startActivity(new Intent(MainActivity.this, CustomerPanel_BottomNavigation.class));
                                     finish();
                                 }
                             }
@@ -62,6 +67,9 @@ public class MainActivity extends AppCompatActivity {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
                                 dialogInterface.dismiss();
+                                Intent intent = new Intent(MainActivity.this, MainMenu.class);
+                                startActivity(intent);
+                                finish();
                             }
                         });
 

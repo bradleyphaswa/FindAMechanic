@@ -43,7 +43,7 @@ public class CustomerRegister extends AppCompatActivity {
     String name, email, password,confirmPassword, phone, street, suburb, province;
     String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
 
-    String role = "Service";
+    String role = "Customer";
 
     public final static String CUSTOMER_REGISTER_PHONE_NUMBER =  "phone";
 

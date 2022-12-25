@@ -22,7 +22,7 @@ import com.google.firebase.auth.PhoneAuthProvider;
 
 import java.util.concurrent.TimeUnit;
 
-public class CustomerVerifyPhone extends AppCompatActivity {
+public class CustomerSendOtp extends AppCompatActivity {
 
     String verificationCode, phoneNumber;
 
@@ -37,14 +37,14 @@ public class CustomerVerifyPhone extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_customer_verify_phone);
+        setContentView(R.layout.activity_customer_send_otp);
 
-        phoneNumber = getIntent().getStringExtra(CustomerRegister.CUSTOMER_REGISTER_PHONE_NUMBER).trim();
+        phoneNumber = getIntent().getStringExtra(CustomerPhoneLogin.CUSTOMER_PHONE_LOGIN_NUMBER).trim();
 
-        otp = findViewById(R.id.cOtp);
-        text = findViewById(R.id.c_text);
-        verify = findViewById(R.id.c_verify_otp);
-        resend = findViewById(R.id.c_resend_otp);
+        otp = findViewById(R.id.ccOtp);
+        text = findViewById(R.id.cc_text);
+        verify = findViewById(R.id.cc_verify_otp);
+        resend = findViewById(R.id.cc_resend_otp);
 
         mFirebaseAuth = FirebaseAuth.getInstance();
 
@@ -64,7 +64,6 @@ public class CustomerVerifyPhone extends AppCompatActivity {
                     otp.requestFocus();
                     return;
                 }
-
                 verifyCode(code);
             }
         });
@@ -82,32 +81,6 @@ public class CustomerVerifyPhone extends AppCompatActivity {
                 text.setVisibility(View.INVISIBLE);
             }
         }.start();
-
-        resend.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                resend.setVisibility(View.INVISIBLE);
-                resendOtp(phoneNumber);
-
-                new CountDownTimer(60000, 1000) {
-                    @Override
-                    public void onTick(long millisUntilFinished) {
-                        text.setVisibility(View.VISIBLE);
-                        text.setText("Resend Code within " + millisUntilFinished/1000+" Seconds");
-                    }
-
-                    @Override
-                    public void onFinish() {
-                        resend.setVisibility(View.VISIBLE);
-                        text.setVisibility(View.INVISIBLE);
-                    }
-                }.start();
-            }
-        });
-    }
-
-    private void resendOtp(String phone) {
-        sendVerificationCode(phone);
     }
 
     private void sendVerificationCode(String phoneNumber) {
@@ -132,7 +105,7 @@ public class CustomerVerifyPhone extends AppCompatActivity {
 
         @Override
         public void onVerificationFailed(@NonNull FirebaseException e) {
-            Toast.makeText(CustomerVerifyPhone.this, e.getMessage(),
+            Toast.makeText(CustomerSendOtp.this, e.getMessage(),
                     Toast.LENGTH_SHORT).show();
         }
 
@@ -146,23 +119,25 @@ public class CustomerVerifyPhone extends AppCompatActivity {
 
     private void verifyCode(String code) {
         PhoneAuthCredential credential = PhoneAuthProvider.getCredential(verificationCode, code);
-        linkCredential(credential);
+        signInWithPhone(credential);
     }
 
-    private void linkCredential(PhoneAuthCredential credential) {
-        mFirebaseAuth.getCurrentUser().linkWithCredential(credential)
-                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+    private void signInWithPhone(PhoneAuthCredential credential) {
+
+        mFirebaseAuth.signInWithCredential(credential).addOnCompleteListener(
+                new OnCompleteListener<AuthResult>() {
                     @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
+                    public void onComplete(@androidx.annotation.NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()) {
-                            startActivity(new Intent(CustomerVerifyPhone.this, MainMenu.class));
+                            startActivity(new Intent(CustomerSendOtp.this, CustomerPanel_BottomNavigation.class));
                             finish();
-                        } else {
-                            Toast.makeText(CustomerVerifyPhone.this, task.getException().getMessage(),
-                                    Toast.LENGTH_SHORT).show();
+                        }
+
+                        else {
+                            ReusableCodeForAll.ShowAlert(CustomerSendOtp.this, "Error", task.getException().getMessage());
                         }
                     }
                 });
-    }
 
+    }
 }

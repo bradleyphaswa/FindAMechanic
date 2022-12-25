@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CustomerVerifyPhone">
+    tools:context=".CustomerSendOtp">
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="280dp"
@@ -27,7 +27,7 @@
             android:textStyle="bold" />
 
         <EditText
-            android:id="@+id/cOtp"
+            android:id="@+id/ccOtp"
             android:layout_width="match_parent"
             android:layout_height="70dp"
             android:ems="10"
@@ -36,7 +36,7 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/c_verify_otp"
+            android:id="@+id/cc_verify_otp"
             android:text="Verify"
             android:textColor="@color/white"
             android:layout_marginTop="30dp"
@@ -46,7 +46,7 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/c_resend_otp"
+            android:id="@+id/cc_resend_otp"
             android:text="Resend OTP"
             android:textColor="@color/white"
             android:layout_marginTop="15dp"
@@ -56,7 +56,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/c_text"
+            android:id="@+id/cc_text"
             android:layout_marginTop="15dp"
             android:text=""
             android:textAlignment="center"
