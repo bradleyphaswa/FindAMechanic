@@ -3,7 +3,6 @@ package com.android.findamechanic;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -43,8 +42,18 @@ public class MainActivity extends AppCompatActivity {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot snapshot) {
                                 String role = snapshot.getValue(String.class);
-                                if(role.equals("Service")) {
-                                    startActivity(new Intent(MainActivity.this, ServicePanel_BottomNavigation.class));
+                                if(role.equals("Mechanic")) {
+                                    startActivity(new Intent(MainActivity.this, SparePanel_BottomNavigation.class));
+                                    finish();
+                                }
+
+                                if(role.equals("Spares")) {
+                                    startActivity(new Intent(MainActivity.this, SparePanel_BottomNavigation.class));
+                                    finish();
+                                }
+
+                                if(role.equals("Car Dealer")) {
+                                    startActivity(new Intent(MainActivity.this, SparePanel_BottomNavigation.class));
                                     finish();
                                 }
 

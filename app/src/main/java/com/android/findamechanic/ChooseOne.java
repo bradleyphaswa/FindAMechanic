@@ -9,7 +9,7 @@ import android.widget.Button;
 
 public class ChooseOne extends AppCompatActivity {
 
-    Button serviceProvider, customer;
+    Button mechanic, spareDealer, carDealer, customer;
     Intent intent;
     String type;
 
@@ -23,25 +23,68 @@ public class ChooseOne extends AppCompatActivity {
         intent = getIntent();
         type = intent.getStringExtra("Home").toString().trim();
 
-        serviceProvider = (Button)findViewById(R.id.chooseServiceProvider);
+        mechanic = findViewById(R.id.chooseMechanic);
+        spareDealer = (Button)findViewById(R.id.chooseSpareDealer);
+        carDealer = findViewById(R.id.chooseCarDealer);
         customer = (Button)findViewById(R.id.chooseCustomer);
 
-
-        serviceProvider.setOnClickListener(new View.OnClickListener() {
+        mechanic.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(type.equals("Email")){
-                    Intent loginemail  = new Intent(ChooseOne.this,ServiceEmailLogin.class);
+                    Intent loginemail  = new Intent(ChooseOne.this, MechanicEmailLogin.class);
                     startActivity(loginemail);
                     finish();
                 }
                 if(type.equals("Phone")){
-                    Intent loginphone  = new Intent(ChooseOne.this,ServicePhoneLogin.class);
+                    Intent loginphone  = new Intent(ChooseOne.this, MechanicPhoneLogin.class);
                     startActivity(loginphone);
                     finish();
                 }
                 if(type.equals("Register")){
-                    Intent Register  = new Intent(ChooseOne.this,ServiceRegister.class);
+                    Intent Register  = new Intent(ChooseOne.this, MechanicRegister.class);
+                    startActivity(Register);
+                    finish();
+                }
+            }
+        });
+
+        spareDealer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(type.equals("Email")){
+                    Intent loginemail  = new Intent(ChooseOne.this, SpareEmailLogin.class);
+                    startActivity(loginemail);
+                    finish();
+                }
+                if(type.equals("Phone")){
+                    Intent loginphone  = new Intent(ChooseOne.this, SparePhoneLogin.class);
+                    startActivity(loginphone);
+                    finish();
+                }
+                if(type.equals("Register")){
+                    Intent Register  = new Intent(ChooseOne.this, SpareRegister.class);
+                    startActivity(Register);
+                    finish();
+                }
+            }
+        });
+
+        carDealer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(type.equals("Email")){
+                    Intent loginemail  = new Intent(ChooseOne.this, CarEmailLogin.class);
+                    startActivity(loginemail);
+                    finish();
+                }
+                if(type.equals("Phone")){
+                    Intent loginphone  = new Intent(ChooseOne.this, CarPhoneLogin.class);
+                    startActivity(loginphone);
+                    finish();
+                }
+                if(type.equals("Register")){
+                    Intent Register  = new Intent(ChooseOne.this, CarRegister.class);
                     startActivity(Register);
                     finish();
                 }

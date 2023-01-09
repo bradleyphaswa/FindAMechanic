@@ -5,6 +5,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
 
     <application
         android:allowBackup="true"
@@ -16,6 +17,62 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FindAMechanic"
         tools:targetApi="31">
+        <activity
+            android:name=".ViewAdd"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".CarRegister"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".CarPhoneLogin"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".CarEmailLogin"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".MechanicRegister"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".MechanicPhoneLogin"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".MechanicEmailLogin"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".sparePanel.Spare_PostAd"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
         <activity
             android:name=".CustomerSendOtp"
             android:exported="false">
@@ -45,28 +102,28 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".ServiceSendOtp"
+            android:name=".SpareSendOtp"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".ServiceForgotPassword"
+            android:name=".SpareForgotPassword"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".ServicePanel_BottomNavigation"
+            android:name=".SparePanel_BottomNavigation"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".ServiceVerifyPhone"
+            android:name=".SpareVerifyPhone"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
@@ -94,21 +151,21 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".ServiceRegister"
+            android:name=".SpareRegister"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".ServicePhoneLogin"
+            android:name=".SparePhoneLogin"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".ServiceEmailLogin"
+            android:name=".SpareEmailLogin"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"

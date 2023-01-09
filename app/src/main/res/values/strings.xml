@@ -13,8 +13,8 @@
         <item>Western Cape</item>
     </array>
 
-    <array name="Services">
-        <item>Mechanical Repairs</item>
+    <array name="carList">
+        <item>All</item>
         <item>Auto Electrician</item>
         <item>Panel Beater</item>
         <item>Motor Spare</item>

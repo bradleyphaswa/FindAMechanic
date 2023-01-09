@@ -1,7 +1,5 @@
 package com.android.findamechanic;
 
-import static android.text.TextUtils.isEmpty;
-
 import static com.android.findamechanic.ReusableCodeForAll.validate;
 
 import androidx.annotation.NonNull;
@@ -29,50 +27,51 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.HashMap;
 
-public class CustomerRegister extends AppCompatActivity {
+public class SpareRegister extends AppCompatActivity {
 
-    TextInputLayout customerName, customerEmail, customerPassword, customerConfPassword,
-            customerPhoneNo, customerStreet, customerSuburb;
+    TextInputLayout businessName, businessEmail, businessPassword, confirmPassword, phoneNumber, bStreet, bSuburb;
 
-    Spinner cProvince;
+    Spinner bProvince;
 
-    Button btnRegister, btnEmail, btnPhone;
+    Button register, email, phone;
     FirebaseAuth FAuth;
     DatabaseReference databaseReference;
     FirebaseDatabase firebaseDatabase;
-    String name, email, password,confirmPassword, phone, street, suburb, province;
+    String name, emailId, password,confPassword, mobile, street, suburb, spare, province;
     String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
 
-    String role = "Customer";
+    String role = "Spares";
 
-    public final static String CUSTOMER_REGISTER_PHONE_NUMBER =  "phone";
+    public final static String SPARE_REGISTER_PHONE_NUMBER =  "mobile";
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_customer_register);
+        setContentView(R.layout.activity_spare_register);
 
         //Edit Text
-        customerName = findViewById(R.id.customerName);
-        customerEmail = findViewById(R.id.cusRegEmail);
-        customerPassword  = findViewById(R.id.cusRegPass);
-        customerConfPassword = findViewById(R.id.cusConfirmPass);
-        customerPhoneNo = findViewById(R.id.cusPhoneNumber);
-        customerStreet = findViewById(R.id.cusStreetName);
-        customerSuburb = findViewById(R.id.cusSuburb);
+        businessName = findViewById(R.id.spareName);
+        businessEmail = findViewById(R.id.spareRegEmail);
+        businessPassword  = findViewById(R.id.spareRegPass);
+        confirmPassword = findViewById(R.id.spareConfirmPass);
+        phoneNumber = findViewById(R.id.sparePhoneNumber);
+        bStreet = findViewById(R.id.spareStreetName);
+        bSuburb = findViewById(R.id.spareSuburb);
 
         //Spinners
-        cProvince = findViewById(R.id.cusProvince);
+        bProvince = findViewById(R.id.spareProvince);
 
         //Buttons
-        btnRegister = findViewById(R.id.btnCustomerReg);
-        btnEmail = findViewById(R.id.cEmailLogin);
-        btnPhone = findViewById(R.id.cPhoneLogin);
+        register = findViewById(R.id.btnSpareReg);
+        email = findViewById(R.id.spare_email_link);
+        phone = findViewById(R.id.spare_phone_link);
 
-        cProvince.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        bProvince.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
-                Object value = adapterView.getItemAtPosition(position);
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long l) {
+                Object value = parent.getItemAtPosition(position);
                 province = value.toString().trim();
             }
 
@@ -82,86 +81,90 @@ public class CustomerRegister extends AppCompatActivity {
             }
         });
 
-        databaseReference = firebaseDatabase.getInstance().getReference("Customer");
+        databaseReference = firebaseDatabase.getInstance().getReference("Spares");
         FAuth = FirebaseAuth.getInstance();
 
-        btnRegister.setOnClickListener(new View.OnClickListener() {
+
+        register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                name = customerName.getEditText().getText().toString().trim();
-                email = customerEmail.getEditText().getText().toString().trim();
-                password = customerPassword.getEditText().getText().toString().trim();
-                confirmPassword = customerConfPassword.getEditText().getText().toString().trim();
-                phone = customerPhoneNo.getEditText().getText().toString().trim();
-                street = customerStreet.getEditText().getText().toString().trim();
-                suburb = customerSuburb.getEditText().getText().toString().trim();
+                name = businessName.getEditText().getText().toString().trim();
+                emailId = businessEmail.getEditText().getText().toString().trim();
+                password = businessPassword.getEditText().getText().toString().trim();
+                confPassword = confirmPassword.getEditText().getText().toString().trim();
+                mobile = phoneNumber.getEditText().getText().toString().trim();
+                street =  bStreet.getEditText().getText().toString().trim();
+                suburb = bSuburb.getEditText().getText().toString().trim();
 
-                if(!isEmpty(name) && !isEmpty(email) && !isEmpty(password) && !isEmpty(confirmPassword) &&
-                        !isEmpty(phone) && !isEmpty(street) && !isEmpty(suburb)){
+                if(!isEmpty(name) && !isEmpty(emailId) && !isEmpty(password) && !isEmpty(confPassword) &&
+                        !isEmpty(mobile) && !isEmpty(street) && !isEmpty(suburb)){
 
-                    if(validate(email)) {
+                    if(validate(emailId)) {
+                           FAuth.fetchSignInMethodsForEmail(emailId).addOnCompleteListener(new OnCompleteListener<SignInMethodQueryResult>() {
+                               @Override
+                               public void onComplete(@NonNull Task<SignInMethodQueryResult> task) {
+                                   Boolean isEmailEmpty = task.getResult().getSignInMethods().isEmpty();
 
-                        FAuth.fetchSignInMethodsForEmail(email).addOnCompleteListener(new OnCompleteListener<SignInMethodQueryResult>() {
-                            @Override
-                            public void onComplete(@NonNull Task<SignInMethodQueryResult> task) {
-                                Boolean isEmailEmpty = task.getResult().getSignInMethods().isEmpty();
+                                   if(isEmailEmpty) {
 
-                                if(isEmailEmpty) {
-                                    if(doStringsMatch(password, confirmPassword)) {
-                                        registerNewEmail(email, password);
-                                    } else {
-                                        Toast.makeText(CustomerRegister.this, "Passwords do not match",
-                                                Toast.LENGTH_SHORT).show();
-                                    }
-                                } else {
-                                    Toast.makeText(CustomerRegister.this, "Email already registered",
-                                            Toast.LENGTH_SHORT).show();
-                                }
-                            }
-                        });
-
+                                       //Check if passwords match
+                                       if(doStringsMatch(password, confPassword)) {
+                                           registerNewEmail(emailId, password);
+                                       } else {
+                                           Toast.makeText(SpareRegister.this, "Passwords do not match",
+                                                   Toast.LENGTH_SHORT).show();
+                                       }
+                                   } else {
+                                       Toast.makeText(SpareRegister.this, "Email already registered",
+                                               Toast.LENGTH_SHORT).show();
+                                   }
+                               }
+                           });
                     } else {
-                        Toast.makeText(CustomerRegister.this, "Please enter valid email address.",
+                        Toast.makeText(SpareRegister.this, "Please enter valid email address.",
                                 Toast.LENGTH_SHORT).show();
                     }
 
-                } else {
-                    Toast.makeText(CustomerRegister.this, "Fields cannot be empty",
+                    } else {
+                    Toast.makeText(SpareRegister.this, "Fields cannot be empty",
                             Toast.LENGTH_SHORT).show();
                 }
+
+
+
             }
         });
 
-        btnEmail.setOnClickListener(new View.OnClickListener() {
+        email.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(CustomerRegister.this, CustomerEmailLogin.class));
+                startActivity(new Intent(SpareRegister.this, SpareEmailLogin.class));
                 finish();
             }
         });
 
-        btnPhone.setOnClickListener(new View.OnClickListener() {
+        phone.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(CustomerRegister.this, CustomerPhoneLogin.class));
+                startActivity(new Intent(SpareRegister.this, SparePhoneLogin.class));
                 finish();
             }
         });
 
-    }
+        }
 
     /**
      * Register new email
      */
 
     private void registerNewEmail(final String email, final String password) {
-        final ProgressDialog mDialog = new ProgressDialog(CustomerRegister.this);
+        final ProgressDialog mDialog = new ProgressDialog(SpareRegister.this);
         mDialog.setCancelable(false);
         mDialog.setCanceledOnTouchOutside(false);
         mDialog.setMessage("Registration in progress please wait......");
         mDialog.show();
 
-        FAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+        FAuth.createUserWithEmailAndPassword(emailId, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
 
@@ -174,14 +177,15 @@ public class CustomerRegister extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
                             HashMap<String, String> hashMap1 = new HashMap<>();
-                            hashMap1.put("name", name);
-                            hashMap1.put("email", email);
-                            hashMap1.put("mobile", "27"+phone);
+                            hashMap1.put("businessName", name);
+                            hashMap1.put("email", emailId);
+                            hashMap1.put("phoneNumber", "27"+mobile);
                             hashMap1.put("street", street);
-                            hashMap1.put("suburb", suburb);
                             hashMap1.put("province", province);
+                            hashMap1.put("suburb", suburb);
 
-                            firebaseDatabase.getInstance().getReference("Customer")
+
+                            firebaseDatabase.getInstance().getReference("Spares")
                                     .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                                     .setValue(hashMap1).addOnCompleteListener(new OnCompleteListener<Void>() {
                                         @Override
@@ -193,7 +197,7 @@ public class CustomerRegister extends AppCompatActivity {
                                                 public void onComplete(@NonNull Task<Void> task) {
 
                                                     if(task.isSuccessful()) {
-                                                        AlertDialog.Builder builder = new AlertDialog.Builder(CustomerRegister.this);
+                                                        AlertDialog.Builder builder = new AlertDialog.Builder(SpareRegister.this);
                                                         builder.setMessage("Registered Successfully, please click on the link sent to your email for verification");
                                                         builder.setCancelable(false);
                                                         builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
@@ -201,8 +205,8 @@ public class CustomerRegister extends AppCompatActivity {
                                                             public void onClick(DialogInterface dialogInterface, int i) {
                                                                 dialogInterface.dismiss();
 
-                                                                Intent intent = new Intent(CustomerRegister.this, CustomerVerifyPhone.class);
-                                                                intent.putExtra(CUSTOMER_REGISTER_PHONE_NUMBER, "+27"+phone);
+                                                                Intent intent = new Intent(SpareRegister.this, SpareVerifyPhone.class);
+                                                                intent.putExtra(SPARE_REGISTER_PHONE_NUMBER, "+27"+mobile);
                                                                 startActivity(intent);
                                                             }
                                                         });
@@ -211,7 +215,7 @@ public class CustomerRegister extends AppCompatActivity {
                                                         Alert.show();
                                                     } else {
                                                         mDialog.dismiss();
-                                                        ReusableCodeForAll.ShowAlert(CustomerRegister.this,"Error",task.getException().getMessage());
+                                                        ReusableCodeForAll.ShowAlert(SpareRegister.this,"Error",task.getException().getMessage());
                                                     }
                                                 }
                                             });
@@ -224,12 +228,14 @@ public class CustomerRegister extends AppCompatActivity {
         });
     }
 
+
+
     private boolean isEmpty(String string){
         return string.equals("");
     }
 
-
     private boolean doStringsMatch(String s1, String s2){
         return s1.equals(s2);
     }
-}
+    }
+

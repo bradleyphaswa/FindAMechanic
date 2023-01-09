@@ -1,26 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CustomerPanel_BottomNavigation">
+    tools:context=".SparePanel_BottomNavigation">
 
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/customer_fragment_container"
-        android:layout_above="@id/customer_bottom_navigation"/>
+   <FrameLayout
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"
+       android:id="@+id/spare_fragment_container"
+       android:layout_above="@id/spare_bottom_navigation"/>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/customer_bottom_navigation"
+        android:id="@+id/spare_bottom_navigation"
         android:layout_alignParentBottom="true"
         android:background="?android:attr/windowBackground"
         android:backgroundTint="@color/white"
         app:itemIconTint="@color/menu_item_color"
         app:itemTextColor="@color/menu_item_color"
-        app:menu="@menu/customer_bottom_navigation"/>
+        app:menu="@menu/spare_bottom_navigation"/>
 </RelativeLayout>

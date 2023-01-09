@@ -28,13 +28,31 @@
             android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
         <Button
-            android:id="@+id/chooseServiceProvider"
+            android:id="@+id/chooseMechanic"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:background="@drawable/btnblue"
             android:textColor="@color/white"
             android:layout_marginTop="20dp"
-            android:text="Service Provider" />
+            android:text="Mechanic" />
+
+        <Button
+            android:id="@+id/chooseSpareDealer"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:textColor="@color/white"
+            android:background="@drawable/btnblue"
+            android:text="Spare Parts Dealer" />
+
+        <Button
+            android:id="@+id/chooseCarDealer"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:textColor="@color/white"
+            android:background="@drawable/btnblue"
+            android:text="Car Dealer" />
 
         <Button
             android:id="@+id/chooseCustomer"
