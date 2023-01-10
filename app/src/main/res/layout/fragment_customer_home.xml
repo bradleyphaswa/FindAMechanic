@@ -13,7 +13,7 @@
         android:layout_height="match_parent">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/spare_recycler_menu"
+            android:id="@+id/customer_recycler_menu"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical" />

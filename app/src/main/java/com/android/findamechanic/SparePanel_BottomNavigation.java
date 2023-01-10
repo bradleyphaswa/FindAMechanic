@@ -26,11 +26,10 @@ public class SparePanel_BottomNavigation extends AppCompatActivity implements Bo
         BottomNavigationView navigationView = findViewById(R.id.spare_bottom_navigation);
         navigationView.setOnNavigationItemSelectedListener(this);
         UpdateToken();
+        loadServiceFragment(new SpareHomeFragment());
         String name = getIntent().getStringExtra("PAGE");
         if(name !=null) {
-            if (name.equalsIgnoreCase("HomePage")) {
-                loadServiceFragment(new SpareHomeFragment());
-            } else if (name.equalsIgnoreCase("AcceptRequest")) {
+             if (name.equalsIgnoreCase("AcceptRequest")) {
                 loadServiceFragment(new SpareInboxFragment());
             } else {
                 loadServiceFragment(new SpareHomeFragment());

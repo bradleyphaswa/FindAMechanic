@@ -14,8 +14,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.android.findamechanic.R;
@@ -48,11 +48,13 @@ public class CustomerHomeFragment extends Fragment implements SwipeRefreshLayout
         getActivity().setTitle("Home");
         setHasOptionsMenu(true);
 
-        mRecyclerView = v.findViewById(R.id.spare_recycler_menu);
+        mRecyclerView = v.findViewById(R.id.customer_recycler_menu);
         mRecyclerView.setHasFixedSize(true);
         Animation animation = AnimationUtils.loadAnimation(getContext(), R.anim.move);
         mRecyclerView.startAnimation(animation);
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+
+
+        mRecyclerView.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
 
 
         updateAdModelList = new ArrayList<>();

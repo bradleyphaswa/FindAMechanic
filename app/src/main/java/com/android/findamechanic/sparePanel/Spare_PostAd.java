@@ -209,8 +209,6 @@ public class Spare_PostAd extends AppCompatActivity {
         mDescription.setError("");
         mPrice.setErrorEnabled(false);
         mPrice.setError("");
-        mPhone.setErrorEnabled(false);
-        mPhone.setError("");
 
         boolean isValidTitle=false,isValidDescription = false,isValidPrice=false,isValid=false;
         if(TextUtils.isEmpty(description)){
@@ -232,12 +230,7 @@ public class Spare_PostAd extends AppCompatActivity {
         }else{
             isValidPrice=true;
         }
-        if(TextUtils.isEmpty(phone)){
-            mPhone.setErrorEnabled(true);
-            mPhone.setError("Please Enter Phone Number");
-        }else{
-            isValidPrice=true;
-        }
+
         isValid = (isValidDescription && isValidTitle && isValidPrice)?true:false;
         return isValid;
     }

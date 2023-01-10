@@ -18,6 +18,20 @@
         android:theme="@style/Theme.FindAMechanic"
         tools:targetApi="31">
         <activity
+            android:name=".sparePanel.UpdateDelete_Ad"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".MechanicHome"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".ViewAdd"
             android:exported="false">
             <meta-data

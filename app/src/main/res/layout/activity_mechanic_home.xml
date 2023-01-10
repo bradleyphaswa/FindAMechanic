@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    tools:context=".MechanicHome"
+    android:stretchColumns="0,1"
+    android:gravity="center"
+    android:layout_gravity="center">
+
+    <TableRow
+        android:background="@color/white"
+        android:layout_width="200dp"
+        android:layout_height="150dp"
+        android:padding="8dp">
+
+        >
+
+        <Button
+            android:drawableTop="@drawable/ic_email_black"
+            android:layout_width="wrap_content"
+            android:layout_height="100dp"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Add Services"
+            android:layout_margin="1dp"
+            android:layout_column="0"
+            android:background="#FFFFFF"
+            android:textStyle="bold"
+            />
+
+        <Button
+            android:drawableTop="@drawable/ic_email_black"
+            android:layout_width="wrap_content"
+            android:layout_height="100dp"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Update service"
+            android:layout_margin="1dp"
+            android:layout_column="0"
+            android:background="#FFFFFF"
+            android:textStyle="bold"
+            />
+    </TableRow>
+
+
+    <TableRow
+        android:background="@color/white"
+        android:layout_width="200dp"
+        android:layout_height="150dp"
+        android:padding="8dp">
+
+        >
+
+        <Button
+            android:drawableTop="@drawable/ic_email_black"
+            android:layout_width="wrap_content"
+            android:layout_height="100dp"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Profile"
+            android:layout_margin="1dp"
+            android:layout_column="0"
+            android:background="#FFFFFF"
+            android:textStyle="bold"
+            />
+
+        <Button
+            android:drawableTop="@drawable/ic_email_black"
+            android:layout_width="wrap_content"
+            android:layout_height="100dp"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Inbox"
+            android:layout_margin="1dp"
+            android:layout_column="0"
+            android:background="#FFFFFF"
+            android:textStyle="bold"
+            />
+    </TableRow>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+
+        android:layout_width="fill_parent"
+        android:layout_height="150dp"
+        android:orientation="horizontal"
+        >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="logout"
+            android:background="#FFFFFF"
+            android:layout_marginTop="20dp"
+            android:gravity="center_horizontal"
+            />
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+</TableLayout>

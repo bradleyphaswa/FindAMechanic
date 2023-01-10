@@ -17,7 +17,7 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/adTitle"
+            android:id="@+id/s_ad_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
@@ -33,13 +33,13 @@
             android:layout_width="match_parent"
             android:layout_height="150dp"
             android:adjustViewBounds="true"
-            android:id="@+id/add_image"
+            android:id="@+id/s_ad_image"
             android:scaleType="centerCrop"/>
 
 
 
         <TextView
-            android:id="@+id/adPrice"
+            android:id="@+id/s_ad_price"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
